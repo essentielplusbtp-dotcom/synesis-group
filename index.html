@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNESIS GROUP - Solutions d'Ingénierie & Services - Gabon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-primary: #0071BC;
+            --color-secondary: #00A6D6;
+            --color-light: #F5F5F5;
+            --color-dark: #1a1a1a;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--color-dark); line-height: 1.6; background: white; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* NAVBAR */
+        .navbar {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 113, 188, 0.2);
+        }
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-img { height: 45px; width: auto; }
+        .brand-name { color: white; font-size: 24px; font-weight: 800; font-family: 'Montserrat', sans-serif; }
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover { opacity: 0.8; }
+        
+        /* HERO */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: white;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 113, 188, 0.85) 0%, rgba(0, 166, 214, 0.75) 100%);
+            z-index: 1;
+        }
+        .hero-content { z-index: 3; max-width: 900px; position: relative; }
+        .hero-title {
+            font-size: 72px;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        .hero-subtitle {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        }
+        .hero-description {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 5px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-secondary) 0%, #0091c4 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 166, 214, 0.4);
+        }
+        .btn-secondary {
+            background: white;
+            color: var(--color-primary);
+            border: 2px solid white;
+        }
+        .btn-secondary:hover {
+            background: transparent;
+            color: white;
+        }
+        
+        /* STATS */
+        .stats-section {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            padding: 80px 0;
+            color: white;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        .stat-card { text-align: center; }
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+        }
+        .stat-label {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .stat-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* SECTIONS */
+        .section {
+            padding: 100px 0;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h2 {
+            font-size: 48px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+        .section-tagline {
+            font-size: 18px;
+            color: var(--color-secondary);
+            font-weight: 600;
+        }
+        
+        /* ABOUT */
+        .about-section {
+            background: #fafafa;
+        }
+        .about-box {
+            background: white;
+            padding: 60px;
+            border-radius: 10px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 20px rgba(0, 113, 188, 0.1);
+        }
+        .about-box h3 {
+            font-size: 32px;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .about-box p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        /* CARDS GRID */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 113, 188, 0.15);
+        }
+        .card h4 {
+            font-size: 20px;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+        }
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        /* PROJECTS GRID */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0, 113, 188, 0.25);
+        }
+        .project-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            background-color: #ddd;
+        }
+        .project-info {
+            padding: 30px;
+        }
+        .project-info h4 {
+            font-size: 20px;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .project-category {
+            font-size: 12px;
+            color: var(--color-secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .project-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .project-result {
+            font-size: 14px;
+            color: #27ae60;
+            font-weight: 600;
+        }
+        
+        /* CONTACT */
+        .contact-section {
+            background: #fafafa;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        .contact-info h3, .contact-form h3 {
+            font-size: 24px;
+            color: var(--color-primary);
+            margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .info-group {
+            margin-bottom: 25px;
+        }
+        .info-group h4 {
+            font-size: 16px;
+            color: var(--color-secondary);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .info-group p {
+            font-size: 14px;
+            color: #555;
+        }
+        .info-group a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 14px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: 'Open Sans', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 8px rgba(0, 166, 214, 0.2);
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .footer-col p {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        .footer-col a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .footer-col a:hover { opacity: 0.7; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title { font-size: 48px; }
+            .nav-menu { gap: 15px; font-size: 12px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .section-header h2 { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <img src="https://essentialplushb-dotcom.github.io/Groupe-synesis/images/logo.png" alt="SYNESIS GROUP Logo" class="logo-img">
+                <span class="brand-name">SYNESIS GROUP</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#accueil" class="nav-link">Accueil</a>
+                <a href="#qui-sommes-nous" class="nav-link">Qui Sommes-Nous</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#projets" class="nav-link">Projets</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="accueil" class="hero" style="background-image: url('https://essentialplushb-dotcom.github.io/Groupe-synesis/images/i5.jpg');">
+        <div class="hero-content">
+            <h1 class="hero-title">SYNESIS GROUP</h1>
+            <p class="hero-subtitle">Solutions Complètes en Ingénierie</p>
+            <p class="hero-description">Partenaire d'exigence pour vos projets d'infrastructure stratégique</p>
+            <div class="hero-cta">
+                <a href="#services" class="btn btn-primary">Découvrir Nos Services</a>
+                <a href="#contact" class="btn btn-secondary">Demander un Devis</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Projets Réalisés</div>
+                    <div class="stat-subtitle">Au Gabon et région</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Années d'Expérience</div>
+                    <div class="stat-subtitle">Expertise éprouvée</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Professionnels</div>
+                    <div class="stat-subtitle">Ingénieurs & Techniciens</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction Clients</div>
+                    <div class="stat-subtitle">Qualité reconnue</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUI SOMMES-NOUS -->
+    <section id="qui-sommes-nous" class="section" style="background: #fafafa;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Qui Sommes-Nous ?</h2>
+                <p class="section-tagline">Votre Partenaire d'Exigence en Ingénierie et Services</p>
+            </div>
+            
+            <div class="about-box">
+                <h3>SYNESIS GROUP (S.G. Sarl)</h3>
+                <p>Une entreprise <strong>moderne, fiable et dynamique</strong>, basée à <strong>Akanda, au Gabon</strong>. Nous sommes spécialisés dans la fourniture de <strong>solutions globales et intégrées</strong> pour les secteurs du génie civil, du génie industriel et des services maritimes.</p>
+                <p><strong>BÂTIR L'AVENIR</strong> — Notre raison d'être est de livrer des projets de <strong>haute qualité</strong>, dans les <strong>délais impartis</strong>, en garantissant une <strong>efficacité opérationnelle maximale</strong>.</p>
+            </div>
+
+            <div class="section-header" style="margin-top: 60px;">
+                <h2 style="font-size: 32px;">Nos Engagements Fondamentaux</h2>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">🤝</div>
+                    <h4>Professionnalisme & Confiance</h4>
+                    <p>Transparence, rigueur et respect strict des normes internationales. Nous construisons des relations durables.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💡</div>
+                    <h4>Innovation & Expertise</h4>
+                    <p>Équipes hautement qualifiées maîtrisant les technologies de pointe. Solutions durables et performantes.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h4>Orientation Résultats</h4>
+                    <p>Livrer des projets de haute qualité, dans les délais et budgets convenus, avec efficacité maximale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nos Services</h2>
+                <p class="section-tagline">Un Groupe, Des Expertises Complémentaires</p>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card" style="border-top: 5px solid var(--color-secondary);">
+                    <div class="card-icon">🏗️</div>
+                    <h4>Génie Civil</h4>
+                    <p>Construction et maintenance de routes, ponts et bâtiments industriels complexes avec techniques avancées.</p>
+                </div>
+                <div class="card" style="border-top: 5px solid var(--color-secondary);">
+                    <div class="card-icon">⚙️</div>
+                    <h4>Génie Industriel</h4>
+                    <p>Solutions techniques pour l'énergie, les mines et la transformation. Optimisation des processus industriels.</p>
+                </div>
+                <div class="card" style="border-top: 5px solid var(--color-secondary);">
+                    <div class="card-icon">🚢</div>
+                    <h4>Services Maritimes</h4>
+                    <p>Expertise pour opérations portuaires, logistique maritime et inspection sous-marine. Services 24/7.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section id="projets" class="section" style="background: #fafafa;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nos Projets Ambitieux</h2>
+                <p class="section-tagline">Réalisations qui Transforment le Paysage du Gabon</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://essentialplushb-dotcom.github.io/Groupe-synesis/images/i5.jpg');"></div>
+                    <div class="project-info">
+                        <h4>Siège Social SYNESIS - Akanda</h4>
+                        <p class="project-category">Génie Civil</p>
+                        <p class="project-desc">Bâtiment ultra-moderne de 5000m² avec architecture écologique et smart building.</p>
+                        <p class="project-result">✓ Terminé à temps | ✓ Qualité exceptionnelle</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://essentialplushb-dotcom.github.io/Groupe-synesis/images/i1.jpg');"></div>
+                    <div class="project-info">
+                        <h4>Usine de Transformation Industrielle</h4>
+                        <p class="project-category">Génie Industriel</p>
+                        <p class="project-desc">Refonte complète de chaîne de production avec automation et systèmes intelligents.</p>
+                        <p class="project-result">✓ +45% productivité | ✓ -30% coûts opérationnels</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://essentialplushb-dotcom.github.io/Groupe-synesis/images/i4.jpg');"></div>
+                    <div class="project-info">
+                        <h4>Terminal Portuaire Akanda</h4>
+                        <p class="project-category">Services Maritimes</p>
+                        <p class="project-desc">Modernisation avec installations de manutention nouvelle génération et normes internationales.</p>
+                        <p class="project-result">✓ Capacité +100% | ✓ Opérationnel 24/7</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://essentialplushb-dotcom.github.io/Groupe-synesis/images/i6.jpg');"></div>
+                    <div class="project-info">
+                        <h4>Smart City Gabon</h4>
+                        <p class="project-category">Génie Civil + Industriel</p>
+                        <p class="project-desc">Zone urbaine intelligente avec infrastructure numérique intégrée et bâtiments connectés.</p>
+                        <p class="project-result">✓ Projet phare | ✓ Durabilité certifiée</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://essentialplushb-dotcom.github.io/Groupe-synesis/images/i9.jpg');"></div>
+                    <div class="project-info">
+                        <h4>Infrastructure Routière Nationale</h4>
+                        <p class="project-category">Génie Civil</p>
+                        <p class="project-desc">Construction de 150km de routes modernes avec systèmes de drainage avancés et passages sécurisés.</p>
+                        <p class="project-result">✓ Normes CEEAC | ✓ Sécurité renforcée</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('https://essentialplushb-dotcom.github.io/Groupe-synesis/images/i10.jpg');"></div>
+                    <div class="project-info">
+                        <h4>Smart Factory 4.0</h4>
+                        <p class="project-category">Génie Industriel</p>
+                        <p class="project-desc">Transformation numérique avec IoT, AI et robotique pour industrie 4.0 complète et performante.</p>
+                        <p class="project-result">✓ Productivité +60% | ✓ Efficacité maximale</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contactez-Nous</h2>
+                <p class="section-tagline">Discutons de Vos Projets</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Coordonnées</h3>
+                    <div class="info-group">
+                        <h4>📞 Téléphone</h4>
+                        <p><a href="tel:+241748453553">+241 74 84 53 53</a></p>
+                    </div>
+                    <div class="info-group">
+                        <h4>📧 Email</h4>
+                        <p><a href="mailto:contact@synesis-group.ga">contact@synesis-group.ga</a></p>
+                    </div>
+                    <div class="info-group">
+                        <h4>📍 Siège Social</h4>
+                        <p>BP 1890, Akanda<br>Quartier Angondjé<br>Gabon</p>
+                    </div>
+                    <div class="info-group">
+                        <h4>🏛️ Certifications</h4>
+                        <p>RCCM: GA-LBV-01-2026-B12-00594<br>NIF: 2026 0105 3828 M</p>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="return handleSubmit(event)">
+                    <h3>Envoyer un Message</h3>
+                    <div class="form-group">
+                        <label>Nom Complet *</label>
+                        <input type="text" required placeholder="Votre nom">
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" required placeholder="Votre email">
+                    </div>
+                    <div class="form-group">
+                        <label>Service *</label>
+                        <select required>
+                            <option>-- Sélectionner --</option>
+                            <option>Génie Civil</option>
+                            <option>Génie Industriel</option>
+                            <option>Services Maritimes</option>
+                            <option>Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message *</label>
+                        <textarea rows="5" required placeholder="Votre message..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SYNESIS GROUP</h4>
+                    <p>Partenaire d'exigence en ingénierie et services, basé à Akanda, Gabon.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Génie Civil</a></li>
+                        <li><a href="#services">Génie Industriel</a></li>
+                        <li><a href="#services">Services Maritimes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Entreprise</h4>
+                    <ul>
+                        <li><a href="#qui-sommes-nous">Qui Sommes-Nous</a></li>
+                        <li><a href="#projets">Nos Projets</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>BP 1890, Akanda<br>Gabon<br><strong>+241 74 84 53 53</strong></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SYNESIS GROUP — Tous droits réservés</p>
+                <p>RCCM: GA-LBV-01-2026-B12-00594 | BÂTIR L'AVENIR</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('✓ Merci! Votre message a été envoyé. Nous vous contacterons bientôt.');
+            event.target.reset();
+            return false;
+        }
+    </script>
+</body>
+</html>
