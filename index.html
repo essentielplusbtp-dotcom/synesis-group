@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SYNESIS GROUP — Génie Civil, Industriel, Maritime & Services | Gabon</title>
+<meta name="description" content="SYNESIS GROUP (S.G. Sarl) — Solutions d'ingénierie intégrée à Akanda, Gabon. Génie civil, TP, routes, industrie, maritime, fournitures, imprimerie, nettoyage.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0071BC;
+  --cyan:#00A6D6;
+  --deep:#004E82;
+  --night:#031A2C;
+  --red:#D32F2F;
+  --grey:#F5F7FA;
+  --txt:#2b3944;
+  --muted:#6b7c8a;
+  --radius:14px;
+  --shadow:0 10px 40px rgba(3,26,44,.10);
+  --shadow-lg:0 24px 70px rgba(0,78,130,.22);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:'Open Sans',sans-serif;color:var(--txt);line-height:1.7;background:#fff;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none}
+.container{max-width:1240px;margin:0 auto;padding:0 24px}
+h1,h2,h3,h4,.brand-name{font-family:'Montserrat',sans-serif}
+
+/* ============ PRELOADER ============ */
+#preloader{position:fixed;inset:0;background:linear-gradient(140deg,var(--deep),var(--cyan));z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:22px;transition:opacity .6s ease,visibility .6s ease}
+#preloader.hide{opacity:0;visibility:hidden}
+.pre-logo{width:90px;height:90px;object-fit:contain;background:#fff;border-radius:50%;padding:10px;animation:pulse 1.4s ease-in-out infinite}
+.pre-txt{color:#fff;font-family:'Montserrat';font-weight:800;letter-spacing:4px;font-size:14px}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+
+/* ============ TOPBAR ============ */
+.topbar{background:var(--night);color:#cfe2ef;font-size:13px;padding:8px 0}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.topbar a{color:#cfe2ef;transition:.3s}
+.topbar a:hover{color:var(--cyan)}
+.topbar .tb-left{display:flex;gap:22px;flex-wrap:wrap}
+.tb-badge{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;padding:3px 12px;border-radius:20px;font-weight:700;font-size:11px;letter-spacing:1px}
+
+/* ============ NAVBAR ============ */
+.navbar{position:sticky;top:0;z-index:9000;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid #e6edf3;transition:.35s}
+.navbar.scrolled{box-shadow:0 8px 30px rgba(3,26,44,.12);padding:0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 0;transition:.35s}
+.navbar.scrolled .nav-inner{padding:7px 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{height:60px;width:auto;object-fit:contain;transition:.35s;background:#fff;border-radius:10px;padding:4px;box-shadow:0 3px 12px rgba(0,78,130,.13)}
+.navbar.scrolled .brand img{height:46px}
+.brand-txt{display:flex;flex-direction:column;line-height:1.1}
+.brand-name{font-weight:900;font-size:21px;color:var(--deep);letter-spacing:.5px}
+.brand-sub{font-size:10px;letter-spacing:3px;color:var(--cyan);font-weight:700}
+.nav-menu{display:flex;align-items:center;gap:6px}
+.nav-menu a{color:var(--txt);font-weight:600;font-size:14px;padding:10px 14px;border-radius:8px;position:relative;transition:.25s}
+.nav-menu a::after{content:'';position:absolute;left:14px;right:14px;bottom:5px;height:2px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav-menu a:hover{color:var(--blue)}
+.nav-menu a:hover::after,.nav-menu a.active::after{transform:scaleX(1)}
+.nav-cta{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff!important;padding:11px 22px!important;border-radius:30px;box-shadow:0 6px 18px rgba(0,166,214,.35)}
+.nav-cta::after{display:none}
+.nav-cta:hover{transform:translateY(-2px);color:#fff!important}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{width:26px;height:3px;background:var(--deep);border-radius:3px;transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;color:#fff}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.1);transition:opacity 1.4s ease,transform 7s linear}
+.hero-slide.on{opacity:1;transform:scale(1)}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,rgba(3,26,44,.92) 0%,rgba(0,78,130,.82) 45%,rgba(0,166,214,.55) 100%);z-index:2}
+.hero-inner{position:relative;z-index:3;padding:120px 0 90px;max-width:820px}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);padding:8px 18px;border-radius:30px;font-size:12px;font-weight:700;letter-spacing:2px;margin-bottom:26px;backdrop-filter:blur(6px)}
+.hero-tag i{width:8px;height:8px;background:var(--cyan);border-radius:50%;animation:blink 1.6s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{font-size:clamp(38px,6vw,72px);font-weight:900;line-height:1.05;letter-spacing:-1px;margin-bottom:20px}
+.hero h1 span{background:linear-gradient(90deg,var(--cyan),#7fe3ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-lead{font-size:clamp(16px,2vw,20px);opacity:.94;max-width:660px;margin-bottom:14px}
+.hero-sectors{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+.hero-sectors span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);padding:7px 15px;border-radius:8px;font-size:13px;font-weight:600}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;border-radius:32px;font-family:'Montserrat';font-weight:700;font-size:15px;cursor:pointer;border:2px solid transparent;transition:.3s}
+.btn-1{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#fff;box-shadow:0 12px 30px rgba(0,166,214,.4)}
+.btn-1:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,166,214,.55)}
+.btn-2{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.btn-2:hover{background:#fff;color:var(--deep);transform:translateY(-4px)}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;color:#fff;font-size:11px;letter-spacing:3px;text-align:center;opacity:.8}
+.mouse{width:24px;height:38px;border:2px solid #fff;border-radius:14px;margin:0 auto 8px;position:relative}
+.mouse::after{content:'';position:absolute;top:7px;left:50%;transform:translateX(-50%);width:4px;height:7px;background:#fff;border-radius:3px;animation:wheel 1.6s infinite}
+@keyframes wheel{0%{opacity:1;top:7px}100%{opacity:0;top:20px}}
+
+/* ============ STATS ============ */
+.stats{background:linear-gradient(120deg,var(--deep),var(--blue) 60%,var(--cyan));padding:64px 0;color:#fff;position:relative}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:30px;text-align:center}
+.stat h3{font-size:clamp(36px,5vw,54px);font-weight:900;line-height:1}
+.stat p{font-weight:700;font-size:15px;margin-top:6px}
+.stat small{opacity:.8;font-size:12.5px}
+
+/* ============ SECTION BASE ============ */
+section.blk{padding:100px 0}
+.bg-grey{background:var(--grey)}
+.sec-head{text-align:center;max-width:760px;margin:0 auto 60px}
+.sec-kicker{display:inline-block;color:var(--cyan);font-weight:800;font-size:12px;letter-spacing:4px;margin-bottom:14px}
+.sec-head h2{font-size:clamp(30px,4.2vw,46px);font-weight:900;color:var(--deep);line-height:1.15;margin-bottom:16px}
+.sec-head h2 em{font-style:normal;color:var(--cyan)}
+.sec-head p{color:var(--muted);font-size:16.5px}
+.sep{width:70px;height:4px;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:4px;margin:0 auto 18px}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center}
+.about-visual{position:relative}
+.about-visual img{border-radius:var(--radius);box-shadow:var(--shadow-lg);height:480px;width:100%;object-fit:cover}
+.about-float{position:absolute;bottom:-26px;left:-26px;background:#fff;padding:22px 26px;border-radius:var(--radius);box-shadow:var(--shadow);border-left:5px solid var(--cyan);max-width:250px}
+.about-float b{display:block;font-family:'Montserrat';font-size:30px;color:var(--deep);line-height:1}
+.about-float span{font-size:12.5px;color:var(--muted);font-weight:600}
+.about-txt h3{font-size:28px;color:var(--deep);margin-bottom:18px;font-weight:800}
+.about-txt p{color:#4a5b68;margin-bottom:16px;font-size:15.6px}
+.about-txt strong{color:var(--deep)}
+.pillars{display:grid;gap:14px;margin-top:26px}
+.pillar{display:flex;gap:16px;background:#fff;padding:18px 20px;border-radius:12px;box-shadow:0 4px 18px rgba(3,26,44,.07);border-left:4px solid var(--cyan);transition:.3s}
+.pillar:hover{transform:translateX(8px);box-shadow:var(--shadow)}
+.pillar .ic{font-size:26px;flex-shrink:0}
+.pillar h4{font-size:16px;color:var(--deep);margin-bottom:3px}
+.pillar p{font-size:13.8px;color:var(--muted);margin:0}
+
+/* MVV cards */
+.mvv{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-top:70px}
+.mvv-card{background:#fff;padding:40px 32px;border-radius:var(--radius);box-shadow:var(--shadow);position:relative;overflow:hidden;transition:.35s}
+.mvv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.mvv-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-lg)}
+.mvv-card .ic{font-size:40px;margin-bottom:16px}
+.mvv-card h4{color:var(--deep);font-size:20px;margin-bottom:12px}
+.mvv-card p{font-size:14.6px;color:var(--muted)}
+
+/* ============ SERVICES ============ */
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:28px}
+.srv{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:.4s;display:flex;flex-direction:column}
+.srv:hover{transform:translateY(-12px);box-shadow:var(--shadow-lg)}
+.srv-img{position:relative;height:215px;overflow:hidden;background:#d9e9f3}
+.srv-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.srv:hover .srv-img img{transform:scale(1.12)}
+.srv-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,78,130,.05),rgba(3,26,44,.72));transition:.4s}
+.srv:hover .srv-img::after{background:linear-gradient(180deg,rgba(0,113,188,.25),rgba(3,26,44,.8))}
+.srv-num{position:absolute;top:14px;right:16px;z-index:2;font-family:'Montserrat';font-weight:900;font-size:40px;color:rgba(255,255,255,.35)}
+.srv-pill{position:absolute;left:16px;bottom:14px;z-index:2;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);color:#fff;font-size:11px;font-weight:700;letter-spacing:1.5px;padding:5px 12px;border-radius:20px}
+.srv-body{padding:26px 26px 30px;flex:1;display:flex;flex-direction:column}
+.srv-body h4{color:var(--deep);font-size:19px;margin-bottom:10px;line-height:1.3}
+.srv-body p{font-size:14.4px;color:var(--muted);flex:1}
+.srv-list{margin-top:14px;display:flex;flex-wrap:wrap;gap:7px}
+.srv-list span{background:var(--grey);color:var(--blue);font-size:11.5px;font-weight:600;padding:5px 11px;border-radius:6px}
+.srv-link{margin-top:18px;color:var(--cyan);font-weight:700;font-size:13.5px;letter-spacing:1px;display:inline-flex;gap:8px;align-items:center;transition:.3s}
+.srv:hover .srv-link{gap:14px}
+
+/* ============ PROCESS ============ */
+.proc{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px;position:relative}
+.step{text-align:center;padding:34px 22px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);position:relative;transition:.35s}
+.step:hover{transform:translateY(-8px);background:linear-gradient(150deg,var(--deep),var(--blue));color:#fff}
+.step:hover h4,.step:hover p{color:#fff}
+.step .n{width:56px;height:56px;margin:0 auto 18px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Montserrat';font-weight:900;font-size:20px;box-shadow:0 8px 20px rgba(0,166,214,.4)}
+.step h4{color:var(--deep);font-size:17px;margin-bottom:8px;transition:.3s}
+.step p{font-size:13.8px;color:var(--muted);transition:.3s}
+
+/* ============ DOMAINES / GALLERY ============ */
+.filters{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:44px}
+.filters button{background:#fff;border:2px solid #e2ebf2;color:var(--muted);padding:10px 22px;border-radius:30px;font-family:'Montserrat';font-weight:700;font-size:13px;cursor:pointer;transition:.3s}
+.filters button:hover{border-color:var(--cyan);color:var(--blue)}
+.filters button.on{background:linear-gradient(135deg,var(--blue),var(--cyan));border-color:transparent;color:#fff;box-shadow:0 8px 20px rgba(0,166,214,.35)}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
+.gitem{position:relative;border-radius:var(--radius);overflow:hidden;height:290px;box-shadow:var(--shadow);cursor:pointer;background:#e3f0f8}
+.gitem img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.gitem:hover img{transform:scale(1.14)}
+.gitem .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,26,44,0) 30%,rgba(3,26,44,.9));display:flex;flex-direction:column;justify-content:flex-end;padding:26px;color:#fff;transition:.4s}
+.gitem:hover .ov{background:linear-gradient(180deg,rgba(0,113,188,.35),rgba(3,26,44,.95))}
+.gitem .ov small{color:var(--cyan);font-weight:800;font-size:11px;letter-spacing:2.5px;margin-bottom:6px}
+.gitem .ov h4{font-size:19px;line-height:1.25}
+.gitem .ov p{font-size:13.5px;opacity:0;max-height:0;overflow:hidden;transition:.45s;margin-top:0}
+.gitem:hover .ov p{opacity:.9;max-height:120px;margin-top:10px}
+.gitem.hide{display:none}
+
+/* ============ WHY US ============ */
+.why{background:linear-gradient(130deg,var(--night),var(--deep) 70%,var(--blue));color:#fff;position:relative;overflow:hidden}
+.why::after{content:'';position:absolute;width:520px;height:520px;background:radial-gradient(circle,rgba(0,166,214,.28),transparent 70%);top:-160px;right:-120px;border-radius:50%}
+.why .sec-head h2{color:#fff}
+.why .sec-head p{color:#bcd6e6}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px;position:relative;z-index:2}
+.why-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:32px 26px;backdrop-filter:blur(8px);transition:.35s}
+.why-card:hover{background:rgba(255,255,255,.14);transform:translateY(-8px)}
+.why-card .ic{font-size:34px;margin-bottom:14px}
+.why-card h4{font-size:17.5px;margin-bottom:10px}
+.why-card p{font-size:14px;color:#c6dceb}
+
+/* ============ CTA BAND ============ */
+.band{background:linear-gradient(120deg,var(--cyan),var(--blue));padding:64px 0;color:#fff}
+.band .container{display:flex;justify-content:space-between;align-items:center;gap:34px;flex-wrap:wrap}
+.band h3{font-size:clamp(24px,3.2vw,34px);font-weight:900;line-height:1.2}
+.band p{opacity:.95;margin-top:8px}
+.band .btn-2{border-color:#fff}
+
+/* ============ CONTACT ============ */
+.ct-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:46px}
+.ct-cards{display:grid;gap:16px}
+.ct-card{background:#fff;border-radius:12px;padding:22px 24px;display:flex;gap:18px;align-items:flex-start;box-shadow:0 4px 18px rgba(3,26,44,.07);transition:.3s;border-left:4px solid transparent}
+.ct-card:hover{border-left-color:var(--cyan);transform:translateX(6px);box-shadow:var(--shadow)}
+.ct-card .ic{font-size:24px}
+.ct-card h4{font-size:14px;color:var(--cyan);letter-spacing:1.5px;margin-bottom:5px;text-transform:uppercase}
+.ct-card p,.ct-card a{font-size:15px;color:var(--txt);font-weight:600}
+.ct-card a:hover{color:var(--blue)}
+.form{background:#fff;border-radius:var(--radius);padding:40px;box-shadow:var(--shadow)}
+.form h3{color:var(--deep);font-size:23px;margin-bottom:8px}
+.form .fh{color:var(--muted);font-size:14px;margin-bottom:26px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:12.5px;font-weight:700;color:var(--deep);margin-bottom:7px;letter-spacing:.5px}
+.fg input,.fg select,.fg textarea{width:100%;padding:13px 15px;border:2px solid #e4edf4;border-radius:10px;font-family:'Open Sans';font-size:14.5px;background:#fbfdff;transition:.25s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--cyan);background:#fff;box-shadow:0 0 0 4px rgba(0,166,214,.12)}
+.form .btn-1{width:100%;justify-content:center}
+.okmsg{display:none;background:#e6f7ec;border:1px solid #a8dfbb;color:#1d7a3e;padding:14px;border-radius:10px;font-size:14px;font-weight:600;margin-bottom:16px}
+
+/* ============ FOOTER ============ */
+footer{background:var(--night);color:#a9c3d4;padding:70px 0 0}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:46px}
+.f-col h4{color:#fff;font-size:16px;margin-bottom:20px;position:relative;padding-bottom:12px}
+.f-col h4::after{content:'';position:absolute;left:0;bottom:0;width:36px;height:3px;background:var(--cyan);border-radius:3px}
+.f-col p,.f-col li{font-size:14px;line-height:1.9}
+.f-col ul{list-style:none}
+.f-col a{color:#a9c3d4;transition:.25s}
+.f-col a:hover{color:var(--cyan);padding-left:5px}
+.f-brand{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.f-brand img{height:62px;background:#fff;border-radius:10px;padding:5px}
+.f-brand b{color:#fff;font-family:'Montserrat';font-size:19px}
+.f-legal{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.08);padding:20px 0;font-size:13px;text-align:center}
+.f-legal span{color:var(--cyan);font-weight:700}
+
+/* ============ FLOATING ============ */
+.wa{position:fixed;bottom:26px;right:24px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 10px 28px rgba(37,211,102,.5);z-index:8000;transition:.3s;text-decoration:none}
+.wa:hover{transform:scale(1.12)}
+.top{position:fixed;bottom:96px;right:24px;width:48px;height:48px;background:var(--deep);color:#fff;border:0;border-radius:50%;cursor:pointer;font-size:20px;opacity:0;visibility:hidden;transition:.3s;z-index:8000;box-shadow:var(--shadow)}
+.top.show{opacity:1;visibility:visible}
+.top:hover{background:var(--cyan)}
+
+/* ============ REVEAL ANIM ============ */
+.rv{opacity:0;transform:translateY(38px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1000px){
+  .about-grid,.ct-grid{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:860px){
+  .burger{display:flex}
+  .nav-menu{position:fixed;inset:0 0 0 auto;width:290px;background:#fff;flex-direction:column;align-items:stretch;padding:100px 22px 30px;gap:4px;transform:translateX(100%);transition:transform .4s cubic-bezier(.2,.8,.2,1);box-shadow:-14px 0 44px rgba(3,26,44,.2)}
+  .nav-menu.open{transform:none}
+  .nav-menu a{padding:14px 12px;border-bottom:1px solid #eef4f8}
+  .nav-cta{margin-top:14px;text-align:center;justify-content:center;border-bottom:0!important}
+  .topbar .tb-left{display:none}
+}
+@media(max-width:640px){
+  section.blk{padding:70px 0}
+  .about-visual img{height:330px}
+  .about-float{left:0;bottom:-18px;padding:16px 18px}
+  .row2{grid-template-columns:1fr}
+  .form{padding:28px 22px}
+  .f-grid{grid-template-columns:1fr;gap:32px}
+  .band .container{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/logo.png" alt="SYNESIS GROUP" class="pre-logo">
+  <div class="pre-txt">SYNESIS GROUP</div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container">
+    <div class="tb-left">
+      <span>📍 BP 1890, Akanda — Quartier Angondjé, Gabon</span>
+      <span>🕗 Lun – Sam : 08h00 – 18h00</span>
+    </div>
+    <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+      <a href="tel:+241748453553">📞 +241 74 84 53 53</a>
+      <a href="mailto:contact@synesis-group.ga">✉️ contact@synesis-group.ga</a>
+      <span class="tb-badge">BÂTIR L'AVENIR</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar" id="nav">
+  <div class="container nav-inner">
+    <a href="#accueil" class="brand">
+      <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/logo.png" alt="Logo SYNESIS GROUP">
+      <span class="brand-txt">
+        <span class="brand-name">SYNESIS GROUP</span>
+        <span class="brand-sub">S.G. SARL</span>
+      </span>
+    </a>
+    <nav class="nav-menu" id="menu">
+      <a href="#accueil">Accueil</a>
+      <a href="#apropos">Qui sommes-nous</a>
+      <a href="#services">Nos services</a>
+      <a href="#domaines">Domaines</a>
+      <a href="#methode">Méthode</a>
+      <a href="#contact" class="nav-cta">Demander un devis</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-slides">
+    <div class="hero-slide on" style="background-image:url('https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/batiments-travaux-publics.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/route-ouvrage-art.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/travaux-maritime.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/ingenierie-industrielle.jpg')"></div>
+  </div>
+  <div class="container hero-inner">
+    <div class="hero-tag"><i></i> SOCIÉTÉ GABONAISE D'INGÉNIERIE &amp; DE SERVICES</div>
+    <h1>Nous concevons, construisons et <span>équipons</span> les infrastructures du Gabon.</h1>
+    <p class="hero-lead">SYNESIS GROUP (S.G. Sarl) réunit sous une même signature l'ingénierie civile, industrielle et maritime, ainsi qu'un pôle complet de services généraux aux entreprises et aux administrations.</p>
+    <div class="hero-sectors">
+      <span>🏗️ Bâtiments &amp; TP</span>
+      <span>🛣️ Routes &amp; Ouvrages d'art</span>
+      <span>⚙️ Ingénierie industrielle</span>
+      <span>⚓ Travaux maritimes</span>
+      <span>🛢️ Pipelines &amp; Cuves</span>
+      <span>🖨️ Imprimerie &amp; Fournitures</span>
+      <span>🌿 Nettoyage &amp; Espaces verts</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#services" class="btn btn-1">Découvrir nos services →</a>
+      <a href="#contact" class="btn btn-2">Nous contacter</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="mouse"></div>DÉFILER</div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container stats-grid">
+    <div class="stat rv"><h3><span class="cnt" data-to="9">0</span></h3><p>Métiers intégrés</p><small>Une réponse globale</small></div>
+    <div class="stat rv"><h3><span class="cnt" data-to="50">0</span>+</h3><p>Interventions</p><small>Au Gabon et en région</small></div>
+    <div class="stat rv"><h3><span class="cnt" data-to="20">0</span>+</h3><p>Professionnels</p><small>Ingénieurs &amp; techniciens</small></div>
+    <div class="stat rv"><h3><span class="cnt" data-to="24">0</span>/7</h3><p>Disponibilité</p><small>Sites &amp; urgences</small></div>
+  </div>
+</section>
+
+<!-- A PROPOS -->
+<section class="blk" id="apropos">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sep"></div>
+      <span class="sec-kicker">QUI SOMMES-NOUS</span>
+      <h2>Un groupe gabonais, <em>plusieurs expertises</em>, une seule exigence</h2>
+      <p>Structure agile et pluridisciplinaire, SYNESIS GROUP accompagne ses clients de l'étude à la livraison, puis dans l'exploitation quotidienne de leurs sites.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-visual rv">
+        <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/conception-etudes.jpg" alt="Équipe d'ingénierie SYNESIS GROUP">
+        <div class="about-float">
+          <b>S.G. Sarl</b>
+          <span>RCCM GA-LBV-01-2026-B12-00594<br>NIF 2026 0105 3828 M</span>
+        </div>
+      </div>
+
+      <div class="about-txt rv">
+        <h3>SYNESIS GROUP (S.G. Sarl)</h3>
+        <p>Basée à <strong>Akanda, dans la province de l'Estuaire</strong>, SYNESIS GROUP est une entreprise gabonaise de droit privé qui intervient sur toute la chaîne de valeur d'un projet : <strong>études et conception, réalisation des travaux, fourniture d'équipements et services d'exploitation</strong>.</p>
+        <p>Notre organisation repose sur trois pôles techniques — <strong>génie civil, génie industriel et activités maritimes</strong> — complétés par un <strong>pôle services généraux</strong> dédié aux fournitures de bureau, à l'imprimerie, au nettoyage professionnel et à l'entretien des espaces verts. Cette configuration permet à nos clients de traiter avec un interlocuteur unique là où il en faudrait habituellement cinq.</p>
+        <p>Nous travaillons pour des <strong>administrations publiques, opérateurs industriels, sociétés pétrolières et minières, armateurs, promoteurs immobiliers et entreprises privées</strong>, avec la même méthode : comprendre le besoin réel, chiffrer sans zone d'ombre, tenir le planning, et livrer un ouvrage conforme aux normes.</p>
+        <p><strong>BÂTIR L'AVENIR</strong> n'est pas une formule : c'est l'engagement de laisser derrière nous des infrastructures durables, sûres et utiles au développement du Gabon.</p>
+
+        <div class="pillars">
+          <div class="pillar"><span class="ic">🎯</span><div><h4>Un interlocuteur unique</h4><p>Neuf métiers coordonnés en interne, sans sous-traitance en cascade.</p></div></div>
+          <div class="pillar"><span class="ic">📐</span><div><h4>Rigueur technique</h4><p>Études, notes de calcul et contrôle qualité à chaque phase du chantier.</p></div></div>
+          <div class="pillar"><span class="ic">🇬🇦</span><div><h4>Ancrage local</h4><p>Équipes gabonaises, connaissance du terrain, réactivité sur l'Estuaire et l'intérieur.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mvv">
+      <div class="mvv-card rv"><div class="ic">🚀</div><h4>Notre mission</h4><p>Concevoir et réaliser des infrastructures et des services qui améliorent durablement la performance et le cadre de travail de nos clients, dans le respect des délais, du budget et des normes de sécurité.</p></div>
+      <div class="mvv-card rv"><div class="ic">🔭</div><h4>Notre vision</h4><p>Devenir la référence gabonaise de l'ingénierie intégrée : une entreprise capable de porter un projet du premier croquis jusqu'à la maintenance, avec des compétences 100 % locales.</p></div>
+      <div class="mvv-card rv"><div class="ic">⚖️</div><h4>Nos valeurs</h4><p>Transparence dans le chiffrage, sécurité non négociable sur site, qualité mesurable, respect de la parole donnée et développement des compétences de nos collaborateurs.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="blk bg-grey" id="services">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sep"></div>
+      <span class="sec-kicker">NOS SERVICES</span>
+      <h2>Neuf métiers, <em>une seule signature</em></h2>
+      <p>Du gros œuvre à la fourniture de consommables, SYNESIS GROUP couvre l'ensemble des besoins techniques et logistiques de votre organisation.</p>
+    </div>
+
+    <div class="srv-grid">
+
+      <article class="srv rv">
+        <div class="srv-img"><span class="srv-num">01</span><span class="srv-pill">GÉNIE CIVIL</span>
+          <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/batiments-travaux-publics.jpg" alt="Bâtiments et travaux publics">
+        </div>
+        <div class="srv-body">
+          <h4>Bâtiments &amp; Travaux Publics</h4>
+          <p>Construction, extension et réhabilitation de bâtiments administratifs, industriels, commerciaux et résidentiels. Gros œuvre, second œuvre et finitions.</p>
+          <div class="srv-list"><span>Gros œuvre</span><span>Réhabilitation</span><span>Second œuvre</span><span>VRD</span></div>
+          <span class="srv-link">EN SAVOIR PLUS →</span>
+        </div>
+      </article>
+
+      <article class="srv rv">
+        <div class="srv-img"><span class="srv-num">02</span><span class="srv-pill">INFRASTRUCTURES</span>
+          <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/route-ouvrage-art.jpg" alt="Routes et ouvrages d'art">
+        </div>
+        <div class="srv-body">
+          <h4>Routes &amp; Ouvrages d'Art</h4>
+          <p>Terrassement, chaussées, assainissement routier, ponts, dalots et ouvrages de franchissement. Entretien et réhabilitation du réseau existant.</p>
+          <div class="srv-list"><span>Terrassement</span><span>Chaussées</span><span>Ponts &amp; dalots</span><span>Drainage</span></div>
+          <span class="srv-link">EN SAVOIR PLUS →</span>
+        </div>
+      </article>
+
+      <article class="srv rv">
+        <div class="srv-img"><span class="srv-num">03</span><span class="srv-pill">ÉTUDES</span>
+          <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/conception-etudes.jpg" alt="Conception et études techniques">
+        </div>
+        <div class="srv-body">
+          <h4>Conception, Études &amp; Maîtrise d'Œuvre</h4>
+          <p>Études de faisabilité, plans d'exécution, notes de calcul, métrés, dossiers d'appel d'offres et suivi de chantier en maîtrise d'œuvre.</p>
+          <div class="srv-list"><span>Faisabilité</span><span>Plans d'exécution</span><span>Métrés</span><span>Suivi de chantier</span></div>
+          <span class="srv-link">EN SAVOIR PLUS →</span>
+        </div>
+      </article>
+
+      <article class="srv rv">
+        <div class="srv-img"><span class="srv-num">04</span><span class="srv-pill">INDUSTRIE</span>
+          <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/ingenierie-industrielle.jpg" alt="Ingénierie industrielle">
+        </div>
+        <div class="srv-body">
+          <h4>Ingénierie Industrielle</h4>
+          <p>Montage et maintenance d'équipements, tuyauterie, charpente métallique, automatisation et optimisation des lignes de production.</p>
+          <div class="srv-list"><span>Montage</span><span>Maintenance</span><span>Tuyauterie</span><span>Automatisation</span></div>
+          <span class="srv-link">EN SAVOIR PLUS →</span>
+        </div>
+      </article>
+
+      <article class="srv rv">
+        <div class="srv-img"><span class="srv-num">05</span><span class="srv-pill">MARITIME</span>
+          <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/construction-maritime.jpg" alt="Construction maritime">
+        </div>
+        <div class="srv-body">
+          <h4>Construction Maritime &amp; Portuaire</h4>
+          <p>Quais, appontements, ouvrages de protection et aménagements portuaires. Génie civil en milieu marin et fluvial.</p>
+          <div class="srv-list"><span>Quais</span><span>Appontements</span><span>Génie côtier</span><span>Dragage</span></div>
+          <span class="srv-link">EN SAVOIR PLUS →</span>
+        </div>
+      </article>
+
+      <article class="srv rv">
+        <div class="srv-img"><span class="srv-num">06</span><span class="srv-pill">MARITIME</span>
+          <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/travaux-maritime.jpg" alt="Travaux maritimes et sous-marins">
+        </div>
+        <div class="srv-body">
+          <h4>Travaux Maritimes &amp; Sous-Marins</h4>
+          <p>Assistance aux opérations offshore, inspection et travaux subaquatiques, logistique maritime et support aux navires.</p>
+          <div class="srv-list"><span>Plongée technique</span><span>Inspection</span><span>Offshore</span><span>Logistique</span></div>
+          <span class="srv-link">EN SAVOIR PLUS →</span>
+        </div>
+      </article>
+
+      <article class="srv rv">
+        <div class="srv-img"><span class="srv-num">07</span><span class="srv-pill">ÉNERGIE</span>
+          <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/pipeline-cuves.jpg" alt="Pipelines et cuves de stockage">
+        </div>
+        <div class="srv-body">
+          <h4>Pipelines, Cuves &amp; Réservoirs</h4>
+          <p>Pose et raccordement de canalisations, fabrication et installation de cuves et réservoirs, essais d'étanchéité et protection anticorrosion.</p>
+          <div class="srv-list"><span>Canalisations</span><span>Réservoirs</span><span>Soudage</span><span>Anticorrosion</span></div>
+          <span class="srv-link">EN SAVOIR PLUS →</span>
+        </div>
+      </article>
+
+      <article class="srv rv">
+        <div class="srv-img"><span class="srv-num">08</span><span class="srv-pill">SERVICES</span>
+          <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/services-imprimerie.jpg" alt="Services d'imprimerie">
+        </div>
+        <div class="srv-body">
+          <h4>Imprimerie &amp; Communication Visuelle</h4>
+          <p>Impression offset et numérique, documents administratifs, supports commerciaux, signalétique de chantier et objets publicitaires personnalisés.</p>
+          <div class="srv-list"><span>Offset &amp; numérique</span><span>Signalétique</span><span>Reliure</span><span>Grand format</span></div>
+          <span class="srv-link">EN SAVOIR PLUS →</span>
+        </div>
+      </article>
+
+      <article class="srv rv">
+        <div class="srv-img"><span class="srv-num">09</span><span class="srv-pill">SERVICES</span>
+          <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/fournitures-espaces-verts.jpg" alt="Fournitures, nettoyage et espaces verts">
+        </div>
+        <div class="srv-body">
+          <h4>Fournitures, Nettoyage &amp; Espaces Verts</h4>
+          <p>Fourniture de matériel de bureau, papeterie et consommables informatiques ; nettoyage de bureaux administratifs ; création et entretien d'espaces verts.</p>
+          <div class="srv-list"><span>Matériel de bureau</span><span>Papeterie</span><span>Consommables IT</span><span>Nettoyage</span><span>Espaces verts</span></div>
+          <span class="srv-link">EN SAVOIR PLUS →</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- BAND -->
+<section class="band">
+  <div class="container">
+    <div>
+      <h3>Un projet, un chantier, un besoin en fournitures ?</h3>
+      <p>Nos équipes vous répondent sous 48 heures avec une proposition chiffrée et détaillée.</p>
+    </div>
+    <a href="#contact" class="btn btn-2">Demander un devis gratuit</a>
+  </div>
+</section>
+
+<!-- DOMAINES / GALERIE -->
+<section class="blk" id="domaines">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sep"></div>
+      <span class="sec-kicker">NOS DOMAINES D'INTERVENTION</span>
+      <h2>Les projets que <em>nous réalisons</em></h2>
+      <p>Filtrez par pôle d'activité pour découvrir les types d'ouvrages et de prestations que SYNESIS GROUP prend en charge.</p>
+    </div>
+
+    <div class="filters rv">
+      <button class="on" data-f="all">Tout voir</button>
+      <button data-f="civil">Génie civil</button>
+      <button data-f="indus">Industrie &amp; Énergie</button>
+      <button data-f="mar">Maritime</button>
+      <button data-f="serv">Services généraux</button>
+    </div>
+
+    <div class="gal">
+      <div class="gitem rv" data-c="civil">
+        <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/batiments-travaux-publics.jpg" alt="Bâtiments et travaux publics">
+        <div class="ov"><small>GÉNIE CIVIL</small><h4>Bâtiments &amp; Travaux Publics</h4><p>Immeubles administratifs, bases-vie, entrepôts, logements et réhabilitations lourdes.</p></div>
+      </div>
+      <div class="gitem rv" data-c="civil">
+        <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/route-ouvrage-art.jpg" alt="Routes et ouvrages d'art">
+        <div class="ov"><small>INFRASTRUCTURES</small><h4>Routes &amp; Ouvrages d'Art</h4><p>Voiries urbaines, pistes, ponts et ouvrages de franchissement en zone équatoriale.</p></div>
+      </div>
+      <div class="gitem rv" data-c="civil">
+        <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/conception-etudes.jpg" alt="Conception et études">
+        <div class="ov"><small>ÉTUDES</small><h4>Conception &amp; Études Techniques</h4><p>Plans, notes de calcul, métrés et dossiers techniques pour appels d'offres.</p></div>
+      </div>
+      <div class="gitem rv" data-c="indus">
+        <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/ingenierie-industrielle.jpg" alt="Ingénierie industrielle">
+        <div class="ov"><small>INDUSTRIE</small><h4>Ingénierie Industrielle</h4><p>Montage mécanique, maintenance d'usines, charpente et lignes de production.</p></div>
+      </div>
+      <div class="gitem rv" data-c="indus">
+        <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/pipeline-cuves.jpg" alt="Pipelines et cuves">
+        <div class="ov"><small>ÉNERGIE</small><h4>Pipelines, Cuves &amp; Réservoirs</h4><p>Réseaux de transport de fluides, stockage industriel et protection anticorrosion.</p></div>
+      </div>
+      <div class="gitem rv" data-c="mar">
+        <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/construction-maritime.jpg" alt="Construction maritime">
+        <div class="ov"><small>MARITIME</small><h4>Construction Maritime</h4><p>Quais, appontements et aménagements portuaires en milieu marin.</p></div>
+      </div>
+      <div class="gitem rv" data-c="mar">
+        <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/travaux-maritime.jpg" alt="Travaux maritimes">
+        <div class="ov"><small>MARITIME</small><h4>Travaux Maritimes &amp; Subaquatiques</h4><p>Inspection, plongée technique et support aux opérations offshore.</p></div>
+      </div>
+      <div class="gitem rv" data-c="serv">
+        <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/services-imprimerie.jpg" alt="Services d'imprimerie">
+        <div class="ov"><small>SERVICES</small><h4>Imprimerie &amp; Supports</h4><p>Impression, reliure, signalétique et communication visuelle pour entreprises.</p></div>
+      </div>
+      <div class="gitem rv" data-c="serv">
+        <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/fournitures-espaces-verts.jpg" alt="Fournitures et espaces verts">
+        <div class="ov"><small>SERVICES</small><h4>Fournitures, Nettoyage &amp; Espaces Verts</h4><p>Approvisionnement de bureau, propreté administrative et entretien paysager.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODE -->
+<section class="blk bg-grey" id="methode">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sep"></div>
+      <span class="sec-kicker">NOTRE MÉTHODE</span>
+      <h2>Quatre étapes, <em>zéro mauvaise surprise</em></h2>
+      <p>Une démarche claire, du premier échange jusqu'à la réception de l'ouvrage.</p>
+    </div>
+    <div class="proc">
+      <div class="step rv"><div class="n">01</div><h4>Écoute &amp; diagnostic</h4><p>Visite de site, analyse du besoin réel et définition précise du périmètre.</p></div>
+      <div class="step rv"><div class="n">02</div><h4>Étude &amp; chiffrage</h4><p>Solution technique, planning et devis détaillé ligne par ligne, sans coût caché.</p></div>
+      <div class="step rv"><div class="n">03</div><h4>Exécution &amp; contrôle</h4><p>Mobilisation des équipes, suivi qualité-sécurité et reporting régulier au client.</p></div>
+      <div class="step rv"><div class="n">04</div><h4>Livraison &amp; suivi</h4><p>Réception, documentation technique, garantie et accompagnement dans la durée.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="blk why">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sep"></div>
+      <span class="sec-kicker">POURQUOI SYNESIS GROUP</span>
+      <h2>Ce qui fait <em>la différence</em></h2>
+      <p>Un partenaire structuré, réactif et responsable, capable d'absorber la complexité à votre place.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card rv"><div class="ic">🧩</div><h4>Offre intégrée</h4><p>Neuf métiers réunis : un seul contrat, un seul planning, une seule facture.</p></div>
+      <div class="why-card rv"><div class="ic">⏱️</div><h4>Respect des délais</h4><p>Plannings réalistes, moyens dimensionnés et suivi hebdomadaire d'avancement.</p></div>
+      <div class="why-card rv"><div class="ic">🦺</div><h4>Sécurité &amp; conformité</h4><p>Plan HSE sur chaque chantier, équipements de protection et personnel formé.</p></div>
+      <div class="why-card rv"><div class="ic">💬</div><h4>Transparence</h4><p>Devis détaillés, avenants justifiés et communication directe avec le responsable projet.</p></div>
+      <div class="why-card rv"><div class="ic">🌍</div><h4>Responsabilité</h4><p>Gestion des déchets de chantier, emploi local et respect de l'environnement.</p></div>
+      <div class="why-card rv"><div class="ic">🔧</div><h4>Réactivité</h4><p>Interventions d'urgence et maintenance corrective sur l'ensemble de l'Estuaire.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="blk" id="contact">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sep"></div>
+      <span class="sec-kicker">CONTACT</span>
+      <h2>Parlons de <em>votre projet</em></h2>
+      <p>Décrivez-nous votre besoin : nos équipes reviennent vers vous avec une proposition adaptée.</p>
+    </div>
+
+    <div class="ct-grid">
+      <div class="ct-cards rv">
+        <div class="ct-card"><span class="ic">📞</span><div><h4>Téléphone</h4><a href="tel:+241748453553">+241 74 84 53 53</a></div></div>
+        <div class="ct-card"><span class="ic">✉️</span><div><h4>Email</h4><a href="mailto:contact@synesis-group.ga">contact@synesis-group.ga</a><br><a href="mailto:synesis.group@gmail.com">synesis.group@gmail.com</a></div></div>
+        <div class="ct-card"><span class="ic">📍</span><div><h4>Siège social</h4><p>BP 1890, Akanda<br>Quartier Angondjé — Estuaire<br>République Gabonaise</p></div></div>
+        <div class="ct-card"><span class="ic">🕗</span><div><h4>Horaires</h4><p>Lundi – Samedi : 08h00 – 18h00<br>Astreinte chantier : 24/7</p></div></div>
+        <div class="ct-card"><span class="ic">🏛️</span><div><h4>Identification</h4><p>RCCM : GA-LBV-01-2026-B12-00594<br>NIF : 2026 0105 3828 M</p></div></div>
+      </div>
+
+      <form class="form rv" id="cform" onsubmit="return sendForm(event)">
+        <h3>Demande de devis</h3>
+        <p class="fh">Les champs marqués d'un astérisque sont obligatoires.</p>
+        <div class="okmsg" id="ok">✓ Merci ! Votre demande a bien été prise en compte. Nous vous répondons sous 48 h.</div>
+        <div class="row2">
+          <div class="fg"><label>Nom complet *</label><input type="text" required placeholder="Votre nom"></div>
+          <div class="fg"><label>Société / Organisation</label><input type="text" placeholder="Nom de la structure"></div>
+        </div>
+        <div class="row2">
+          <div class="fg"><label>Email *</label><input type="email" required placeholder="vous@exemple.com"></div>
+          <div class="fg"><label>Téléphone *</label><input type="tel" required placeholder="+241 ..."></div>
+        </div>
+        <div class="fg">
+          <label>Service concerné *</label>
+          <select required>
+            <option value="">— Sélectionner un service —</option>
+            <option>Bâtiments &amp; Travaux Publics</option>
+            <option>Routes &amp; Ouvrages d'Art</option>
+            <option>Conception, Études &amp; Maîtrise d'Œuvre</option>
+            <option>Ingénierie Industrielle</option>
+            <option>Construction Maritime &amp; Portuaire</option>
+            <option>Travaux Maritimes &amp; Sous-Marins</option>
+            <option>Pipelines, Cuves &amp; Réservoirs</option>
+            <option>Imprimerie &amp; Communication Visuelle</option>
+            <option>Fournitures de bureau &amp; Consommables informatiques</option>
+            <option>Nettoyage de bureaux</option>
+            <option>Entretien d'espaces verts</option>
+            <option>Autre demande</option>
+          </select>
+        </div>
+        <div class="fg"><label>Localisation du projet</label><input type="text" placeholder="Ville, quartier, site..."></div>
+        <div class="fg"><label>Votre message *</label><textarea rows="5" required placeholder="Décrivez votre besoin, les volumes, les délais souhaités..."></textarea></div>
+        <button type="submit" class="btn btn-1">Envoyer ma demande →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="f-grid">
+      <div class="f-col">
+        <div class="f-brand">
+          <img src="https://raw.githubusercontent.com/essentialplushb-dotcom/Groupe-synesis/main/Images/logo.png" alt="SYNESIS GROUP">
+          <b>SYNESIS GROUP</b>
+        </div>
+        <p>S.G. Sarl — Société gabonaise d'ingénierie, de travaux et de services généraux. De l'étude à l'exploitation, nous bâtissons l'avenir.</p>
+        <p style="margin-top:14px;color:var(--cyan);font-weight:700;letter-spacing:2px;font-size:13px">BÂTIR L'AVENIR</p>
+      </div>
+      <div class="f-col">
+        <h4>Nos pôles</h4>
+        <ul>
+          <li><a href="#services">Génie civil &amp; TP</a></li>
+          <li><a href="#services">Routes &amp; ouvrages d'art</a></li>
+          <li><a href="#services">Ingénierie industrielle</a></li>
+          <li><a href="#services">Activités maritimes</a></li>
+          <li><a href="#services">Pipelines &amp; cuves</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Services généraux</h4>
+        <ul>
+          <li><a href="#services">Fournitures de bureau</a></li>
+          <li><a href="#services">Papeterie</a></li>
+          <li><a href="#services">Consommables informatiques</a></li>
+          <li><a href="#services">Imprimerie</a></li>
+          <li><a href="#services">Nettoyage &amp; espaces verts</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Contact</h4>
+        <p>BP 1890, Akanda<br>Quartier Angondjé — Gabon</p>
+        <p style="margin-top:10px"><a href="tel:+241748453553"><strong style="color:#fff">+241 74 84 53 53</strong></a></p>
+        <p><a href="mailto:contact@synesis-group.ga">contact@synesis-group.ga</a></p>
+        <p style="margin-top:12px;font-size:12.5px">RCCM : GA-LBV-01-2026-B12-00594<br>NIF : 2026 0105 3828 M</p>
+      </div>
+    </div>
+  </div>
+  <div class="f-legal">
+    © 2026 <span>SYNESIS GROUP (S.G. Sarl)</span> — Tous droits réservés. | Akanda, République Gabonaise
+  </div>
+</footer>
+
+<a href="https://wa.me/+241748453553" class="wa" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+<button class="top" id="toTop" aria-label="Haut de page">↑</button>
+
+<script>
+/* PRELOADER */
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('preloader').classList.add('hide'),450)});
+setTimeout(()=>document.getElementById('preloader').classList.add('hide'),3000);
+
+/* NAV SCROLL */
+const nav=document.getElementById('nav');
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  nav.classList.toggle('scrolled',y>60);
+  toTop.classList.toggle('show',y>500);
+  let cur='';
+  document.querySelectorAll('section[id]').forEach(s=>{if(y>=s.offsetTop-140)cur=s.id});
+  document.querySelectorAll('.nav-menu a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+});
+toTop.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+
+/* BURGER */
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.onclick=()=>{burger.classList.toggle('open');menu.classList.toggle('open')};
+menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{burger.classList.remove('open');menu.classList.remove('open')});
+
+/* HERO SLIDER */
+const slides=document.querySelectorAll('.hero-slide');
+let si=0;
+if(slides.length>1){setInterval(()=>{slides[si].classList.remove('on');si=(si+1)%slides.length;slides[si].classList.add('on')},5500)}
+
+/* REVEAL */
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4*90)+'ms';io.observe(el)});
+
+/* COUNTERS */
+const cio=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,to=+el.dataset.to;let n=0;
+    const t=setInterval(()=>{n+=Math.ceil(to/38);if(n>=to){n=to;clearInterval(t)}el.textContent=n},34);
+    cio.unobserve(el);
+  })
+},{threshold:.5});
+document.querySelectorAll('.cnt').forEach(c=>cio.observe(c));
+
+/* FILTERS */
+document.querySelectorAll('.filters button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    const f=b.dataset.f;
+    document.querySelectorAll('.gitem').forEach(g=>{
+      g.classList.toggle('hide',!(f==='all'||g.dataset.c===f));
+    });
+  }
+});
+
+/* FORM */
+function sendForm(e){
+  e.preventDefault();
+  document.getElementById('ok').style.display='block';
+  e.target.reset();
+  document.getElementById('ok').scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(()=>{document.getElementById('ok').style.display='none'},9000);
+  return false;
+}
+</script>
+</body>
+</html>
